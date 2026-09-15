@@ -1,2 +1,2 @@
-# assignment-1-version-control
-COP4331C Assignment 1 Version Control with GitHub
+# colors-lamp
+A simple web app built using a LAMP stack. Users can log in through the web portal and search for colors they have added to their profile.
