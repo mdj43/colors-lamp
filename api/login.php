@@ -15,25 +15,61 @@
 
     if ($connection->connect_error)
     {
-
+        returnWithError($connection->connect_error);
     }
     else
     {
+        $statement = $connection->prepare("
+            SELECT id, first_name, last_name
+            FROM   users
+            WHERE  username = ?
+            AND    password = ?
+        ");
 
+        $statement->bind_param("ss", $inData["username"], $inData["password"]);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        if ($row = $result->fetch_assoc())
+        {
+            returnSuccess($row["id"], $row["first_name"], $row["last_name"]);
+        }
+        else
+        {
+            returnWithError("No Records Found");
+        }
+
+        $statement->close();
+        $connection->close();
     }
 
     function returnWithError($error)
     {
-
+        $returnValue = 
+        '{
+            "id" : 0,
+            "firstName" : "",
+            "lastName" : "",
+            "error" : "' . $error . '"
+        }';
+        sendResultInfoAsJson($returnValue);
     }
 
-    function returnSuccess($id)
+    function returnSuccess($id, $firstName, $lastName)
     {
-
+        $returnValue = 
+        '{
+            "id" : ' . $id . ',
+            "firstName" : "' . $first_name . '",
+            "lastName" : "' . $lastName . '",
+            "error" : ""
+        }';
+        sendResultInfoAsJson($returnValue);
     }
 
     function sendResultInfoAsJson($object)
     {
-        
+        header('Content-type: application/json');
+        echo $object;
     }
 ?>
