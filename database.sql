@@ -13,6 +13,6 @@ CREATE TABLE `users`(
 CREATE TABLE `colors`(
     `id`      INTEGER NOT NULL UNIQUE AUTO_INCREMENT,
     `name`    VARCHAR(50) NOT NULL DEFAULT '',
-    'user_id' INTEGER NOT NULL DEFAULT 0,
+    `user_id` INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY(`id`)
 ) ENGINE = InnoDB;
