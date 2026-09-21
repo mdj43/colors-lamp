@@ -15,20 +15,35 @@
     
     if ($connection->connect_error)
     {
-
+        returnWithError($connection->connect_error);
     }
     else
     {
+        $statement = $connection->prepare("
+            INSERT INTO colors(user_id, name) 
+            VALUES(?, ?)
+        ");
 
+        $statement->bind_param("ss", $user_id, $color);
+        $statement->execute();
+        $statement->close();
+        $connection->close();
+
+        returnWithError("");
     }
 
     function returnWithError($error)
     {
-        
+        $returnValue = 
+        '{
+            "error" : "' . $error . '"
+        }';
+        sendResultInfoAsJson($returnValue);
     }
 
     function sendResultInfoAsJson($object)
     {
-        
+        header('Content-type: application/json');
+        echo $object;
     }
 ?>
