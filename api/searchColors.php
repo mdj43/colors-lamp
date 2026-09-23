@@ -15,25 +15,72 @@
     
     if ($connection->connect_error)
     {
-
+        returnWithError($connection->connect_error);
     }
     else
     {
+        $searchResults = "";
+        $searchCount = 0;
 
+        $statement = $connection->prepare("
+            SELECT name
+            FROM   colors
+            WHERE  name LIKE ?
+            AND    user_id = ?
+        ");
+
+        $statement->bind_param("ss", "%" . $inData["search"] . "%", $inData["user_id"]);
+        $statement->execute();
+        $result = $statement->get_result();
+
+        while($row = $result->fetch_assoc())
+        {
+            if ($searchCount > 0)
+            {
+                $searchResults .= ",";
+            }
+            $searchCount++;
+            $searchResults .= '"' . $row["name"] . '"';
+        }
+
+        if ($searchCount == 0)
+        {
+            returnWithError("No Records Found");
+        }
+        else
+        {
+            returnWithInfo($searchResults);
+        }
+
+        $statement->close();
+        $connection->close();
     }
 
     function returnWithError($error)
     {
-
+        $returnValue =
+        '{
+            "id" : 0,
+            "first_name" : "",
+            "last_name" : "",
+            "error" : "' . $error . '"
+        }';
+        sendResultInfoAsJson($returnValue);
     }
 
-    function returnSuccess($result)
+    function returnSuccess($searchResults)
     {
-
+        $returnValue =
+        '{
+            "results" : [' . $searchResults . '],
+            "error" : ""
+        }';
+        sendResultInfoAsJson($returnValue);
     }
 
     function sendResultInfoAsJson($object)
     {
-        
+        header('Content-type: application/json');
+        echo $object;
     }
 ?>
