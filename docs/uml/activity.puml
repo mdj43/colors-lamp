@@ -1,0 +1,33 @@
+@startuml "Activity Diagram"
+start
+
+:Display Login Page;
+:Enter Login Credentials;
+
+if (Credentials Valid?) then (Yes)
+    :Display Account Page;
+
+    switch (Perform Action)
+
+    case (Add Color)
+        :Enter Color Name;
+        :Add Color to Database;
+        :Display Success Message;
+
+    case (Search Color)
+        :Enter Search Term;
+        :Query Database on Search Term;
+        :Display Matching Colors;
+    
+    case (Logout)
+        :Display Login Page;
+    
+    endswitch
+
+else (No)
+    :Display Login Error;
+
+endif
+
+stop
+@enduml
