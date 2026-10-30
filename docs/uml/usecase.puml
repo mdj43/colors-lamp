@@ -1,0 +1,15 @@
+@startuml
+
+actor User
+
+package "Colors Web Application" {
+    usecase "Login" as Login
+    usecase "Add Color" as Add
+    usecase "Search Color" as Search
+}
+
+User -> Login
+User -> Add
+User -> Search
+
+@enduml
