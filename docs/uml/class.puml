@@ -1,0 +1,19 @@
+@startuml "Conceptual Class Diagram"
+
+class User {
+    id : int
+    first_name : string
+    last_name : string
+    username : string
+    password : string
+}
+
+class Color {
+    id : int
+    name : string
+    user_id: int
+}
+
+User "1" -- "0..*" Color : has
+
+@enduml
