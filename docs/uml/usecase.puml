@@ -5,13 +5,15 @@ left to right direction
 actor User
 
 rectangle "Colors Web Application" {
-    usecase "Login" as Login
-    usecase "Add Color" as Add
+    usecase "Logout" as Logout
     usecase "Search Color" as Search
+    usecase "Add Color" as Add
+    usecase "Login" as Login
 }
 
 User --> Login
 User --> Add
 User --> Search
+User --> Logout
 
 @enduml
