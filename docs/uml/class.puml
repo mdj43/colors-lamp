@@ -1,4 +1,4 @@
-@startuml "Conceptual Class Diagram"
+@startuml "class"
 
 class User {
     id : int
