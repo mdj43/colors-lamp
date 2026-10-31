@@ -11,7 +11,6 @@ class User {
 class Color {
     id : int
     name : string
-    user_id: int
 }
 
 User "1" -- "0..*" Color : has
