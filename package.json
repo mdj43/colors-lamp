@@ -1,0 +1,33 @@
+{
+  "name": "colors-lamp",
+  "version": "1.0.0",
+  "description": "Colors is a simple web app built using a LAMP stack. Users can log in through the web portal, add colors to their profile, and search for colors that have been added. ## Technologies Used - LAMP stack: Linux, Apache, MySQL, and PHP. - Server hosting: DigitalOcean - IDE: Visual Studio Code - Version Control: Git/GitHub ## Setup Instructions 1. Copy everything inside of this repository to /var/www/html on an Apache web server. 2. Install composer at https://getcomposer.org in /var/www/html/api. 3. Create the MySQL database on the web server using database.sql. 4. Create a database user for the API so it can interact with the database. 5. Create a .env file in /var/www/html/api with the database user credentials (DB_HOST, DB_USER, DB_PASSWORD, and DB_NAME). 6. Insert at least one user account into the database. 7. Change the urlBase variable in code.js (line 1) to use your server. ## Access Instructions - Access your colors application at http://<your Apache server's IP address>. - The web app is hosted at this domain: http://collateralconscience.store.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"**/*.css\"",
+    "lint:html": "htmlhint \"**/*.html\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdj43/colors-lamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mdj43/colors-lamp/issues"
+  },
+  "homepage": "https://github.com/mdj43/colors-lamp#readme",
+  "devDependencies": {
+    "eslint": "^10.14.0",
+    "htmlhint": "^1.9.2",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}
