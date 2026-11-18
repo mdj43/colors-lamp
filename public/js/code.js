@@ -1,4 +1,4 @@
-const urlBase = 'http://collateralconscience.store/API';
+const urlBase = 'http://collateralconscience.store/api';
 const extension = 'php';
 
 let userId = 0;
@@ -17,7 +17,7 @@ function doLogin()
 	
 	document.getElementById("loginResult").innerHTML = "";
 	
-	var tmp = {login:login,password:hash};
+	var tmp = { username:login, password:hash };
 	let jsonPayload = JSON.stringify( tmp );
 	
 	let url = urlBase + '/login.' + extension;
@@ -111,8 +111,8 @@ function addColor()
     let newColor = document.getElementById("colorText").value;
 	document.getElementById("colorAddResult").innerHTML = "";
 
-	let tmp = {color:newColor,userId,userId};
-	let jsonPayload = JSON.stringify( tmp );
+	let tmp = { userId:userId, color:newColor };
+	let jsonPayload = JSON.stringify(tmp);
 
 	let url = urlBase + '/addColor.' + extension;
 	
@@ -144,7 +144,7 @@ function searchColor()
 	let colorList = "";
 
 	let tmp = {search:srch,userId:userId};
-	let jsonPayload = JSON.stringify( tmp );
+	let jsonPayload = JSON.stringify(tmp);
 
 	let url = urlBase + '/searchColors.' + extension;
 	
@@ -160,7 +160,7 @@ function searchColor()
 				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 				
-				for( let i=0; i<jsonObject.results.length; i++ )
+				for( let i = 0; i<jsonObject.results.length; i++ )
 				{
 					colorList += jsonObject.results[i];
 					if( i < jsonObject.results.length - 1 )
@@ -178,4 +178,8 @@ function searchColor()
 	{
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
+}
+
+if (typeof module !== "undefined") {
+	module.exports = { doLogin, readCookie, doLogout, addColor, searchColor };
 }

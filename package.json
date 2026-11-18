@@ -10,7 +10,11 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint \"**/*.css\"",
     "lint:html": "htmlhint \"**/*.html\"",
-    "lint": "npm run lint:js && npm run lint:css && npm run lint:html"
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "jest --runInBand tests/frontend",
+    "test:backend": "node tests/backend/run-backend-tests.js",
+    "test:watch": "jest --watch tests/frontend"
   },
   "repository": {
     "type": "git",
@@ -27,7 +31,14 @@
   "devDependencies": {
     "eslint": "^10.14.0",
     "htmlhint": "^1.9.2",
+    "install": "^0.13.0",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
+    "npm": "^12.2.2",
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true
   }
 }
