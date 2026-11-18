@@ -19,6 +19,7 @@
     }
     else
     {
+        $searchTerm = "%" . $inData["search"] . "%";
         $searchResults = "";
         $searchCount = 0;
 
@@ -29,7 +30,7 @@
             AND    user_id = ?
         ");
 
-        $statement->bind_param("ss", "%" . $inData["search"] . "%", $inData["user_id"]);
+        $statement->bind_param("si", $searchTerm, $inData["userId"]);
         $statement->execute();
         $result = $statement->get_result();
 
@@ -49,7 +50,7 @@
         }
         else
         {
-            returnWithInfo($searchResults);
+            returnSuccess($searchResults);
         }
 
         $statement->close();

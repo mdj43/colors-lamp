@@ -23,8 +23,8 @@
             INSERT INTO colors(user_id, name) 
             VALUES(?, ?)
         ");
-
-        $statement->bind_param("ss", $user_id, $color);
+        
+        $statement->bind_param("is", $inData["userId"], $inData["color"]);
         $statement->execute();
         $statement->close();
         $connection->close();

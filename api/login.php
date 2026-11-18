@@ -60,7 +60,7 @@
         $returnValue = 
         '{
             "id" : ' . $id . ',
-            "firstName" : "' . $first_name . '",
+            "firstName" : "' . $firstName . '",
             "lastName" : "' . $lastName . '",
             "error" : ""
         }';
